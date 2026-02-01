@@ -1,4 +1,0 @@
-1 assignment
-----------------
--rw-rw-r-- 1 madhan madhan 0 Jan 29 22:47 testfile.txt
--rwxrwxr-x 1 madhan madhan 0 Jan 29 22:47 testfile.txt
