@@ -1,0 +1,108 @@
+#test case 1: checking with .txt type
+
+BACKUP MANAGER
+name of the script: ./backup_manager.sh
+
+provided info
+source_directory is : ./sourcedir/
+backup_directory is : ./destdir/
+file type is : txt
+the files for backup are ..
+file1.txt - 79 bytes
+file2.txt - 43 bytes
+file3.txt - 20 bytes
+file4.txt - 20 bytes
+file5.txt - 20 bytes
+newer file : file1.txt 
+newer file : file2.txt 
+newer file : file3.txt 
+newer file : file4.txt 
+newer file : file5.txt 
+the report is updated in ./destdir//backup_report.log  
+
+#test case 2: checking with .csv type 
+
+BACKUP MANAGER
+name of the script: ./backup_manager.sh
+
+provided info
+source_directory is : ./sourcedir/
+backup_directory is : ./destdir/
+file type is : csv
+the files for backup are ..
+file6.csv - 0 bytes
+file7.csv - 0 bytes
+file8.csv - 0 bytes
+newer file : file6.csv 
+newer file : file7.csv 
+newer file : file8.csv 
+the report is updated in ./destdir//backup_report.log  
+
+#test case 3 :if the backup directory is not present and it created and updated
+ 
+BACKUP MANAGER
+name of the script: ./backup_manager.sh
+
+provided info
+source_directory is : ./sourcedir/
+backup_directory is : ./backup/
+file type is : csv
+the backup directory doesnt exist.. so creating a backup directory
+the files for backup are ..
+file6.csv - 0 bytes
+file7.csv - 0 bytes
+file8.csv - 0 bytes
+filename file6.csv is copied
+filename file7.csv is copied
+filename file8.csv is copied
+the report is updated in ./backup//backup_report.log  
+
+
+# test case 4 : if the source destination has no files or the extension does not match
+
+BACKUP MANAGER
+name of the script: ./backup_manager.sh
+
+provided info
+source_directory is : ./sourcedir/
+backup_directory is : ./backup/
+file type is : jpg
+Source directory is empty or no matching files EXIT !!
+
+
+#the tree of the directory
+
+./module3
+├── backup
+│   ├── backup_report.log
+│   ├── file1.txt
+│   ├── file2.txt
+│   ├── file3.txt
+│   ├── file4.txt
+│   ├── file5.txt
+│   ├── file6.csv
+│   ├── file7.csv
+│   └── file8.csv
+├── backup_manager.sh
+├── destdir
+│   ├── backup_report.log
+│   ├── file1.txt
+│   ├── file2.txt
+│   ├── file3.txt
+│   ├── file4.txt
+│   ├── file5.txt
+│   ├── file6.csv
+│   ├── file7.csv
+│   └── file8.csv
+├── output.txt
+└── sourcedir
+    ├── file1.txt
+    ├── file2.txt
+    ├── file3.txt
+    ├── file4.txt
+    ├── file5.txt
+    ├── file6.csv
+    ├── file7.csv
+    └── file8.csv
+
+4 directories, 28 files

@@ -1,0 +1,10 @@
+# backup log for .txt file in the directory created by the script
+ 
+backup report - Mon Feb  2 09:27:01 PM IST 2026 
+
+source directory is ./sourcedir/ 
+backup directory is ./backup/
+the file extension type is txt
+total file processed 5
+total file backedup 5 
+total size of the file 07943202020 
