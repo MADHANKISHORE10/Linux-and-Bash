@@ -1,0 +1,151 @@
+#test case 1 = showing help
+
+Usage: ./file_analyzer.sh [OPTIONS]
+
+OPTIONS:
+  -d <dir>    Recursively search dir for key
+  -k <key>      key to search for
+  -f <file>         Search directly inside a file
+  --help            Display this help menu
+
+# test case 2 existing directory and keyword
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 4
+->>> All Arguments: -d testdir -k test
+-----------------------------------------
+->>> searching dir: testdir
+[MATCHED] key:"test" found in testdir/dir1/filea.txt
+->>> directory search exit status: 0
+
+# test case 3 existing file and keyword
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 4
+->>> All Arguments: -f filea.txt -k test
+-----------------------------------------
+->>> Searching inside file: filea.txt
+[MATCHED] key: "test" found in filea.txt
+->>> File search exit status: 0
+
+# test case 4 existing file not matching keyword
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 4
+->>> All Arguments: -f filea.txt -k mepco
+-----------------------------------------
+->>> Searching inside file: filea.txt
+No match found in filea.txt
+->>> File search exit status: 0
+
+# test case 5 not exisiting directory non existing keyword
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 4
+->>> All Arguments: -d nodir -k hello
+ERROR: dir not found: nodir
+
+# test case 6 not existing file non existing keyword
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 4
+->>> All Arguments: -f nodir -k hello
+ERROR: File not found: nodir
+ERROR: No action specified. Use --help
+
+# test case 7 no keyword
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 2
+->>> All Arguments: -d testdir
+ERROR: Invalid or empty key: ''
+
+# test case 8 no options
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 0
+->>> All Arguments: 
+ERROR: Invalid or empty key: ''
+
+# test case 9 no arguments
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 2
+->>> All Arguments: -d -f
+ERROR: Invalid or empty key: ''
+
+# test case 10 all existing and matching -f -k -d
+
+============================
+FEEDBACK
+============================
+->>> Script Name: ./file_analyzer.sh
+->>> Argument Count: 6
+->>> All Arguments: -d testdir -f filea.txt -k test
+-----------------------------------------
+->>> Searching inside file: filea.txt
+[MATCHED] key: "test" found in filea.txt
+->>> File search exit status: 0
+-----------------------------------------
+->>> searching dir: testdir
+[MATCHED] key:"test" found in testdir/dir1/filea.txt
+->>> directory search exit status: 0
+
+# error logs stored in the error file
+
+Fri Feb  6 03:04:10 PM IST 2026 ERROR: File not found: nodir
+Fri Feb  6 03:04:11 PM IST 2026 ERROR: No action specified. Use --help
+Fri Feb  6 03:13:14 PM IST 2026 ERROR: File not found: nodir
+Fri Feb  6 03:13:14 PM IST 2026 ERROR: No action specified. Use --help
+Fri Feb  6 03:13:26 PM IST 2026 ERROR: Option -k requires an argument
+Fri Feb  6 03:13:35 PM IST 2026 ERROR: File not found: mepco
+Fri Feb  6 03:13:35 PM IST 2026 ERROR: No action specified. Use --help
+Fri Feb  6 03:04:10 PM IST 2026 ERROR: File not found: nodir
+Fri Feb  6 03:04:11 PM IST 2026 ERROR: No action specified. Use --help
+Fri Feb  6 03:13:14 PM IST 2026 ERROR: File not found: nodir
+Fri Feb  6 03:13:14 PM IST 2026 ERROR: No action specified. Use --help
+Fri Feb  6 03:13:26 PM IST 2026 ERROR: Option -k requires an argument
+Fri Feb  6 03:13:35 PM IST 2026 ERROR: File not found: jj
+Fri Feb  6 03:13:35 PM IST 2026 ERROR: No action specified. Use --help
+Fri Feb  6 03:20:03 PM IST 2026 ERROR: Invalid or empty key: ''
+Fri Feb  6 03:20:15 PM IST 2026 ERROR: Option -k requires an argument
+
+# files present in the directory 
+.module5
+├── errors.log
+├── file_analyzer.sh
+├── filea.txt
+├── output.txt
+└── testdir
+    ├── dir1
+    │   ├── filea.txt
+    │   ├── fileb.txt
+    │   ├── filec.txt
+    │   └── filed.txt
+    ├── dir2
+    └── dir3
+
+5 directories, 8 files
+
