@@ -1,0 +1,70 @@
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ make
+make -C /lib/modules/6.14.0-37-generic/build M=/home/madhan/Desktop/embedUR/prac modules
+make[1]: Entering directory '/usr/src/linux-headers-6.14.0-37-generic'
+make[2]: Entering directory '/home/madhan/Desktop/embedUR/prac'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: x86_64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  CC [M]  chardev.o
+  MODPOST Module.symvers
+  CC [M]  chardev.mod.o
+  CC [M]  .module-common.o
+  LD [M]  chardev.ko
+  BTF [M] chardev.ko
+Skipping BTF generation for chardev.ko due to unavailability of vmlinux
+make[2]: Leaving directory '/home/madhan/Desktop/embedUR/prac'
+make[1]: Leaving directory '/usr/src/linux-headers-6.14.0-37-generic'
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ sudo insmod chardev.ko
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ sudo dmesg
+[ 8027.438460] registering the char driver
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ echo "hi from user" > /dev/new_device 
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ sudo dmesg
+[ 8027.438460] registering the char driver
+[ 8089.821631] open is called
+[ 8089.821647] <8> charwrite: copy_from_user
+[ 8089.821650] close is called
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ cat /dev/new_device 
+hi from user
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ sudo dmesg
+[ 8027.438460] registering the char driver
+[ 8089.821631] open is called
+[ 8089.821647] <8> charwrite: copy_from_user
+[ 8089.821650] close is called
+[ 8123.132431] open is called
+[ 8123.132443] <8> charread: copy_to_user
+[ 8123.132523] <8> charread: copy_to_user
+[ 8123.132535] close is called
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ sudo rmmod chardev 
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ sudo dmesg
+[ 8027.438460] registering the char driver
+[ 8089.821631] open is called
+[ 8089.821647] <8> charwrite: copy_from_user
+[ 8089.821650] close is called
+[ 8123.132431] open is called
+[ 8123.132443] <8> charread: copy_to_user
+[ 8123.132523] <8> charread: copy_to_user
+[ 8123.132535] close is called
+[ 8158.988941] unregistering the char driver
+madhan@madhan-VirtualBox:~/Desktop/embedUR/prac$ make clean
+make -C /lib/modules/6.14.0-37-generic/build M=/home/madhan/Desktop/embedUR/prac clean
+make[1]: Entering directory '/usr/src/linux-headers-6.14.0-37-generic'
+make[2]: Entering directory '/home/madhan/Desktop/embedUR/prac'
+  CLEAN   Module.symvers
+make[2]: Leaving directory '/home/madhan/Desktop/embedUR/prac'
+make[1]: Leaving directory '/usr/src/linux-headers-6.14.0-37-generic'
+
+
+.module6
+├── chardev.c
+├── chardev.ko
+├── chardev.mod
+├── chardev.mod.c
+├── chardev.mod.o
+├── chardev.o
+├── hello.c
+├── Makefile
+├── modules.order
+├── Module.symvers
+└── output.txt
+
+1 directory, 11 files
